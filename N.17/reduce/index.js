@@ -10,6 +10,6 @@ let getSum = (str) => {
     }
     return sum;
   }, 0);
-};а
+};
 
 alert(`В этой строке ${getSum(message)} строчные/х букв`);
