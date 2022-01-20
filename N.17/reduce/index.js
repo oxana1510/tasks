@@ -6,10 +6,10 @@ let getSum = (str) => {
   str = str.toLowerCase().split("");
   return str.reduce((prev, cur) => {
     if (vowels.indexOf(cur) >= 0) {
-      sum += 1;
+      prev = ++sum;
     }
-    return sum;
-  }, 0);
+    return prev;
+  }, sum);
 };
 
 alert(`В этой строке ${getSum(message)} строчные/х букв`);
