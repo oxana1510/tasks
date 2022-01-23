@@ -17,10 +17,16 @@ function palindrom(str) {
     .replace(/[- .,:;!?/ъь]/g, "")
     .replace(/ё/g, "е");
 
-  let str2 = str.split("").reverse().join("");
+  let strItem;
+  let strItem2;
 
-  if (str == str2) {
-    return alert("Это палиндром");
+  for (let i = 0; i < str.length; i++) {
+    strItem = str.charAt(str.length - 1 - i);
+    strItem2 = str.charAt(i);
+  }
+
+  if (strItem === strItem2) {
+    alert("Это палиндром");
   } else {
     alert("Это не палиндром");
   }
