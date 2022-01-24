@@ -17,19 +17,25 @@ function palindrom(str) {
     .replace(/[- .,:;!?/ъь]/g, "")
     .replace(/ё/g, "е");
 
-  let strItem;
-  let strItem2;
+  let strItem = "";
+  let strItem2 = "";
 
   for (let i = 0; i < str.length; i++) {
     strItem = str.charAt(str.length - 1 - i);
     strItem2 = str.charAt(i);
+
+    if (strItem !== strItem2) {
+      return false;
+    }
   }
 
-  if (strItem === strItem2) {
-    alert("Это палиндром");
-  } else {
-    alert("Это не палиндром");
-  }
+  return true;
 }
 
 palindrom(message);
+
+if (palindrom(message)) {
+  alert("Это палиндром");
+} else {
+  alert("Это не палиндром");
+}
