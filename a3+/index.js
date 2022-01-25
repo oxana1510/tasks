@@ -19,8 +19,8 @@ function palindrom(str) {
 
   let strItem = "";
   let strItem2 = "";
-
-  for (let i = 0; i < str.length; i++) {
+  
+  for (let i = 0; i < Math.floor(str.length/2); i++) {
     strItem = str.charAt(str.length - 1 - i);
     strItem2 = str.charAt(i);
 
