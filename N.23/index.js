@@ -146,3 +146,4 @@ function createForm(form) {
 }
 
 createForm(formDef1);
+createForm(formDef2);
