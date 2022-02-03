@@ -36,114 +36,119 @@ let formDef2 = [
   { caption: "Зарегистрироваться", kind: "submit" },
 ];
 
-function createForm(form) {
-  let formTag = document.querySelector("form");
-  formTag.setAttribute("action", "https://fe.it-academy.by/TestForm.php");
-  form.forEach((item) => {
-    if (item.kind === "longtext") {
-      let br = document.createElement("br");
-      let label = document.createElement("label");
-      label.innerHTML = item.label;
-      let input = document.createElement("input");
-      input.setAttribute("name", item.name);
-      formTag.appendChild(label);
-      formTag.appendChild(input);
-      formTag.appendChild(br);
-    }
+function createForm(form, name) {
+  let formTags = document.querySelectorAll("form");
 
-    if (item.kind === "number") {
-      let br = document.createElement("br");
-      let label = document.createElement("label");
-      label.innerHTML = item.label;
-      let input = document.createElement("input");
-      input.setAttribute("name", item.name);
-      input.setAttribute("type", "number");
-      formTag.appendChild(label);
-      formTag.appendChild(input);
-      formTag.appendChild(br);
-    }
+  formTags.forEach((formTag) => {
+    if (formTag.name == name) {
+      formTag.setAttribute("action", "https://fe.it-academy.by/TestForm.php");
+      form.forEach((item) => {
+        if (item.kind === "longtext") {
+          let br = document.createElement("br");
+          let label = document.createElement("label");
+          label.innerHTML = item.label;
+          let input = document.createElement("input");
+          input.setAttribute("name", item.name);
+          formTag.appendChild(label);
+          formTag.appendChild(input);
+          formTag.appendChild(br);
+        }
 
-    if (item.kind === "shorttext") {
-      let br = document.createElement("br");
-      let label = document.createElement("label");
-      label.innerHTML = item.label;
-      let input = document.createElement("input");
-      input.setAttribute("name", item.name);
-      input.setAttribute("type", "email");
-      formTag.appendChild(label);
-      formTag.appendChild(input);
-      formTag.appendChild(br);
-    }
+        if (item.kind === "number") {
+          let br = document.createElement("br");
+          let label = document.createElement("label");
+          label.innerHTML = item.label;
+          let input = document.createElement("input");
+          input.setAttribute("name", item.name);
+          input.setAttribute("type", "number");
+          formTag.appendChild(label);
+          formTag.appendChild(input);
+          formTag.appendChild(br);
+        }
 
-    if (item.kind === "combo") {
-      let br = document.createElement("br");
-      let label = document.createElement("label");
-      label.innerHTML = item.label;
-      let select = document.createElement("select");
-      select.setAttribute("name", item.name);
+        if (item.kind === "shorttext") {
+          let br = document.createElement("br");
+          let label = document.createElement("label");
+          label.innerHTML = item.label;
+          let input = document.createElement("input");
+          input.setAttribute("name", item.name);
+          input.setAttribute("type", "email");
+          formTag.appendChild(label);
+          formTag.appendChild(input);
+          formTag.appendChild(br);
+        }
 
-      item.variants.forEach((el) => {
-        let option = document.createElement("option");
-        option.setAttribute("value", el.value);
-        option.innerHTML = el.text;
-        select.appendChild(option);
+        if (item.kind === "combo") {
+          let br = document.createElement("br");
+          let label = document.createElement("label");
+          label.innerHTML = item.label;
+          let select = document.createElement("select");
+          select.setAttribute("name", item.name);
+
+          item.variants.forEach((el) => {
+            let option = document.createElement("option");
+            option.setAttribute("value", el.value);
+            option.innerHTML = el.text;
+            select.appendChild(option);
+          });
+
+          formTag.appendChild(label);
+          formTag.appendChild(select);
+          formTag.appendChild(br);
+        }
+
+        if (item.kind === "radio") {
+          let br = document.createElement("br");
+          let label = document.createElement("label");
+          label.innerHTML = item.label;
+          formTag.appendChild(label);
+
+          item.variants.forEach((el) => {
+            let input = document.createElement("input");
+            input.setAttribute("value", el.value);
+            input.setAttribute("type", "radio");
+            let span = document.createElement("span");
+            span.innerHTML = el.text;
+            formTag.appendChild(input);
+            formTag.appendChild(span);
+          });
+
+          formTag.appendChild(br);
+        }
+
+        if (item.kind === "check") {
+          let br = document.createElement("br");
+          let label = document.createElement("label");
+          label.innerHTML = item.label;
+          let input = document.createElement("input");
+          input.setAttribute("type", "checkbox");
+          input.checked = true;
+          formTag.appendChild(label);
+          formTag.appendChild(input);
+          formTag.appendChild(br);
+        }
+
+        if (item.kind === "memo") {
+          let br = document.createElement("br");
+          let label = document.createElement("label");
+          label.innerHTML = item.label;
+          let textarea = document.createElement("textarea");
+          textarea.setAttribute("name", item.name);
+          formTag.appendChild(label);
+          formTag.appendChild(textarea);
+          formTag.appendChild(br);
+        }
+
+        if (item.kind === "submit") {
+          let input = document.createElement("input");
+          input.setAttribute("type", "submit");
+          input.setAttribute("value", item.caption);
+          formTag.appendChild(input);
+        }
       });
-
-      formTag.appendChild(label);
-      formTag.appendChild(select);
-      formTag.appendChild(br);
-    }
-
-    if (item.kind === "radio") {
-      let br = document.createElement("br");
-      let label = document.createElement("label");
-      label.innerHTML = item.label;
-      formTag.appendChild(label);
-
-      item.variants.forEach((el) => {
-        let input = document.createElement("input");
-        input.setAttribute("value", el.value);
-        input.setAttribute("type", "radio");
-        let span = document.createElement("span");
-        span.innerHTML = el.text;
-        formTag.appendChild(input);
-        formTag.appendChild(span);
-      });
-
-      formTag.appendChild(br);
-    }
-
-    if (item.kind === "check") {
-      let br = document.createElement("br");
-      let label = document.createElement("label");
-      label.innerHTML = item.label;
-      let input = document.createElement("input");
-      input.setAttribute("type", "checkbox");
-      input.checked = true;
-      formTag.appendChild(label);
-      formTag.appendChild(input);
-      formTag.appendChild(br);
-    }
-
-    if (item.kind === "memo") {
-      let br = document.createElement("br");
-      let label = document.createElement("label");
-      label.innerHTML = item.label;
-      let textarea = document.createElement("textarea");
-      textarea.setAttribute("name", item.name);
-      formTag.appendChild(label);
-      formTag.appendChild(textarea);
-      formTag.appendChild(br);
-    }
-
-    if (item.kind === "submit") {
-      let input = document.createElement("input");
-      input.setAttribute("type", "submit");
-      input.setAttribute("value", item.caption);
-      formTag.appendChild(input);
     }
   });
 }
 
-createForm(formDef1);
-createForm(formDef2);
+createForm(formDef1, "form1");
+createForm(formDef2, "form2");
