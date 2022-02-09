@@ -1,0 +1,91 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .error {
+    color: red;
+  }
+</style>
+
+<body>
+  <!-- Размещение: от 2 до 50 символов
+  Название: от 2 до 100 символов
+  URL: от 2 до 100 символов
+  Дата запуска: не пустое
+  Посетители: больше 0
+  E-mail: регуляное выражение для e-mail
+  Рубрика: без валидации
+  Размещение: должно быть выбрано
+  Отзывы: обязательно
+  Описание: не менее 10-ти символов -->
+  <form method="POST" id="form" action="https://fe.it-academy.by/TestForm.php" target="_blank" novalidate>
+    <table class="SNoBorders">
+      <tbody>
+        <tr>
+          <td>Разработчики:</td>
+          <td><input type="text" name="author" style="width: 453px">
+          <span class="error"></span></td>
+        </tr>
+        <tr>
+          <td>Название сайта:</td>
+          <td><input type="text" name="sitename" style="width: 453px"><span class="error"></span></td>
+        </tr>
+        <tr>
+          <td>URL сайта:</td>
+          <td><input type="text" name="siteurl" style="width: 300px"><span class="error"></span></td>
+        </tr>
+        <tr>
+          <td>Дата запуска сайта:</td>
+          <td><input type="date" name="startdate"><span class="error"></span></td>
+        </tr>
+        <tr>
+          <td>Посетителей в сутки:</td>
+          <td><input type="number" name="persons" style="width: 80px"><span class="error"></span></td>
+        </tr>
+        <tr>
+          <td>E-mail для связи:</td>
+          <td><input type="email" name="email" style="width: 200px"><span class="error"></span></td>
+        </tr>
+        <tr>
+          <td>Рубрика каталога:</td>
+          <td style="padding-left: 1px">
+            <select name="rubric" style="width: 204px; margin-left: 2px">
+              <option value="1">здоровье</option>
+              <option value="2">домашний уют</option>
+              <option value="3" selected="">бытовая техника</option>
+            </select><span class="error"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>Размещение:</td>
+          <td style="padding: 2px 0 2px 0">
+            <input type="radio" name="public" value="1"><span class="SRadio8a">бесплатное</span>
+            <input type="radio" name="public" value="2"><span class="SRadio8a">платное</span>
+            <input type="radio" name="public" value="3"><span class="SRadio8a">VIP</span>
+            <span class="error"></span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 2px 0 3px 3px">Разрешить&nbsp;отзывы:</td>
+          <td><input type="checkbox" name="comments"><span class="error"></span></td>
+        </tr>
+        <tr>
+          <td colspan="2">Описание сайта:<br>
+            <textarea name="article" style="width: 608px; height: 50px"></textarea><span class="error"></span></td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="Опубликовать"><span class="error"></span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <script src="index.js"></script>
+</body>
+
+</html>
