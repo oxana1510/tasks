@@ -4,10 +4,25 @@ let formTag = document.forms.form;
 formTag.addEventListener("submit", validateForm, false);
 
 for (let i = 0; i < formTag.elements.length - 1; i++) {
-  formTag[i].addEventListener("blur", validateFormFocus, false);
+  formTag[i].addEventListener("blur", validateFormInput, false);
+  formTag[i].addEventListener("change", validateFormButtons, false);
 }
 
-function validateFormFocus(e) {
+let clicked = true;
+formTag.elements.rubric.addEventListener("click", function (e) {
+  clicked = false;
+  let error = this.parentElement.querySelector(".error");
+  if (clicked) {
+    this.setAttribute("novalid", "novalid");
+    error.innerHTML = "Выберете, пожалуйста, рубрику";
+    e.preventDefault();
+  } else {
+    error.innerHTML = "";
+    this.removeAttribute("novalid");
+  }
+});
+
+function validateFormInput(e) {
   e = e || window.event;
   try {
     let val = this.value.trim();
@@ -85,6 +100,51 @@ function validateFormFocus(e) {
         }
         break;
 
+      case "rubric":
+        if (clicked) {
+          this.setAttribute("novalid", "novalid");
+          error.innerHTML = "Выберете, пожалуйста, рубрику";
+          e.preventDefault();
+        } else {
+          error.innerHTML = "";
+          this.removeAttribute("novalid");
+        }
+        break;
+
+      case "article":
+        if (val.length < 10) {
+          this.setAttribute("novalid", "novalid");
+          error.innerHTML =
+            "Введите, пожалуйста, описание сайта (не менее 10-ти символов)";
+          e.preventDefault();
+        } else {
+          error.innerHTML = "";
+          this.removeAttribute("novalid");
+        }
+        break;
+    }
+  } catch (error) {
+    console.log("Ошбика:", error);
+    e.preventDefault();
+  }
+}
+
+function validateFormButtons(e) {
+  e = e || window.event;
+  try {
+    let error = this.parentElement.querySelector(".error");
+
+    switch (this.getAttribute("name")) {
+      case "rubric":
+        if (clicked) {
+          this.setAttribute("novalid", "novalid");
+          error.innerHTML = "Выберете, пожалуйста, рубрику";
+          e.preventDefault();
+        } else {
+          error.innerHTML = "";
+          this.removeAttribute("novalid");
+        }
+        break;
       case "public":
         let radios = formTag.querySelectorAll('input[type="radio"]:checked');
         if (radios.length <= 0) {
@@ -101,18 +161,6 @@ function validateFormFocus(e) {
         if (!this.checked) {
           this.setAttribute("novalid", "novalid");
           error.innerHTML = "Разрешите, пожалуйста, отзывы";
-          e.preventDefault();
-        } else {
-          error.innerHTML = "";
-          this.removeAttribute("novalid");
-        }
-        break;
-
-      case "article":
-        if (val.length < 10) {
-          this.setAttribute("novalid", "novalid");
-          error.innerHTML =
-            "Введите, пожалуйста, описание сайта (не менее 10-ти символов)";
           e.preventDefault();
         } else {
           error.innerHTML = "";
@@ -199,6 +247,17 @@ function validateForm(e) {
           if (val.length == 0 || regEmail.test(val) == false) {
             formTag[i].setAttribute("novalid", "novalid");
             error.innerHTML = "Введите, пожалуйста, корректный email";
+            e.preventDefault();
+          } else {
+            error.innerHTML = "";
+            formTag[i].removeAttribute("novalid");
+          }
+          break;
+
+        case "rubric":
+          if (clicked) {
+            formTag[i].setAttribute("novalid", "novalid");
+            error.innerHTML = "Выберете, пожалуйста, рубрику";
             e.preventDefault();
           } else {
             error.innerHTML = "";
