@@ -42,7 +42,7 @@
       posTop = this.offsetTop - e.clientY;
       posLeft = this.offsetLeft - e.clientX;
       image = this;
-
+      document.removeEventListener('mouseup', dragMouseUp, false);
       document.addEventListener("mousemove", dragMouseMove, false);
       document.addEventListener('mouseup', dragMouseUp, false);
 
@@ -58,8 +58,9 @@
 
     function dragMouseUp(e) {
       e.preventDefault();
+      image = null;
       document.removeEventListener('mousemove', dragMouseMove, false);
-      image.style.cursor = "default";
+      e.target.style.cursor = "default";
     }
 
     for (let i = 0; i < img.length; i++) {
