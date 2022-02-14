@@ -58,7 +58,6 @@
 
     function dragMouseUp(e) {
       e.preventDefault();
-      document.onmouseup = null;
       document.removeEventListener('mousemove', dragMouseMove, false);
       image.style.cursor = "default";
     }
