@@ -29,14 +29,15 @@ function CLOCK_DOM() {
 
       let agle = 360 / numberHours;
       let curAgle = i * agle;
-      let radAgle = curAgle * Math.PI / 180;
+      let radAgle = (curAgle * Math.PI) / 180;
       let widthCircle = 15;
 
-      let bottom = (50 + ((50 - (widthCircle / 2)) * Math.cos(radAgle))) - (widthCircle / 2);
-      let left = (50 + ((50 - (widthCircle / 2)) * Math.sin(radAgle))) - (widthCircle / 2);
+      let bottom =
+        50 + (50 - widthCircle / 2) * Math.cos(radAgle) - widthCircle / 2;
+      let left =
+        50 + (50 - widthCircle / 2) * Math.sin(radAgle) - widthCircle / 2;
 
-      let fontSize = val/numberHours;
-
+      let fontSize = val / numberHours;
 
       hourItem.innerHTML = i;
       hourItem.style.cssText = `position: absolute; left: ${left}%; bottom: ${bottom}%;border-radius: 50%; background: #48b382; width: ${widthCircle}%;height: 15%; font-weight: bold; font-family:sans-serif; font-size: ${fontSize}px; display: flex; justify-content: center; align-items:center;`;
@@ -44,6 +45,33 @@ function CLOCK_DOM() {
       clock.appendChild(hourItem);
     }
   }
+
+  function getDateValues() {
+    let date = new Date();
+    let seconds = date.getSeconds();
+    let sdegree = seconds * cell;
+    arrowSeconds.style.transform = "rotate(" + sdegree + "deg";
+
+    let minutes = date.getMinutes();
+
+    let hours = date.getHours();
+
+    let hdegree = hours * angleHour + minutes / 2;
+
+    arrowHour.style.transform = "rotate(" + hdegree + "deg";
+
+    let mdegree = minutes * cell;
+
+    arrowMinute.style.transform = "rotate(" + mdegree + "deg";
+
+    digitalWatch(hours, minutes, seconds);
+  }
+
+  getDateValues();
+
+  setInterval(() => {
+    getDateValues();
+  }, 1000);
 }
 
 function digitalWatch(getHours, getMinutes, getSeconds) {
@@ -55,29 +83,8 @@ function digitalWatch(getHours, getMinutes, getSeconds) {
     ? (getSeconds = "0" + getSeconds)
     : getSeconds;
 
-    time.style.fontSize = input.value/numberHours;
+  time.style.fontSize = input.value / numberHours;
 
   time.innerHTML = `${getHours}:${getMinutes}:${getSeconds}`;
+  console.log(`${getHours}:${getMinutes}:${getSeconds}`);
 }
-
-setInterval(() => {
-  let date = new Date();
-  let seconds = date.getSeconds();
-  let sdegree = seconds * cell;
-  arrowSeconds.style.transform = "rotate(" + sdegree + "deg";
-
-  let minutes = date.getMinutes();
-
-  let hours = date.getHours();
-
-  let hdegree = hours * angleHour + minutes / 2;
-
-  arrowHour.style.transform = "rotate(" + hdegree + "deg";
-
-  let mdegree = minutes * cell;
-
-  arrowMinute.style.transform = "rotate(" + mdegree + "deg";
-  digitalWatch(hours, minutes, seconds);
-}, 1000);
-
-console.log(`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`)
