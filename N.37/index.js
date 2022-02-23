@@ -65,7 +65,6 @@ function CLOCK_DOM() {
       textHourItem.setAttribute("font-weight", "bold");
       textHourItem.setAttribute("font-size", fontSize);
 
-      console.log(textHourItem);
       textHourItem.innerHTML = i;
 
       circle.after(hourItem);
