@@ -18,59 +18,58 @@ btn.addEventListener("click", CLOCK_DOM, false);
 function CLOCK_DOM() {
   let val = input.value;
 
-
   if (input.value && input.value >= 200 && input.value <= 800) {
     btn.style.display = "none";
     input.style.display = "none";
     clock.setAttribute("width", val);
     clock.setAttribute("height", val);
-    circle.setAttribute("cx", val/2);
-    circle.setAttribute("cy", val/2);
-    circle.setAttribute("r", val/2);
+    circle.setAttribute("cx", val / 2);
+    circle.setAttribute("cy", val / 2);
+    circle.setAttribute("r", val / 2);
 
     let hourItem;
 
     for (let i = 1; i <= numberHours; i++) {
-      hourItem = document.createElementNS("http://www.w3.org/2000/svg",'circle');
+      hourItem = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+      );
 
-      let agle = 360 / numberHours;
-      let curAgle = i * agle;
-      let radAgle = (curAgle * Math.PI) / 180;
-      let widthCircle = 16;
+      let radAgle = i/numberHours * Math.PI * 2; // отображаемый угол в радианах
 
-      let bottom =
-        58 + (47 - widthCircle / 2) * Math.cos(radAgle) - widthCircle / 2;
-      let left =
-        58 + (47 - widthCircle / 2 ) * Math.sin(radAgle) - widthCircle / 2;
+      let x = (val/2)+Math.sin(radAgle)*(val/2.6); // проверяем для угла=0 - sin(0)=0 значит x=cx
+      let y = (val/2)-Math.cos(radAgle)*(val/2.6);
 
       let fontSize = val / numberHours;
 
-      hourItem.setAttribute("width",`${val/numberHours}`);
-      hourItem.setAttribute("height",`${val/numberHours}`);
+      hourItem.setAttribute("width", `${val / numberHours}`);
+      hourItem.setAttribute("height", `${val / numberHours}`);
       hourItem.setAttribute("fill", "#48b382");
       hourItem.setAttribute("stroke", "#48b382");
 
-      hourItem.setAttribute("cx", `${left}%`);
-      hourItem.setAttribute("cy", `${bottom}%`);
-      hourItem.setAttribute("r", val/numberHours);
+      hourItem.setAttribute("cx", `${x}`);
+      hourItem.setAttribute("cy", `${y}`);
+      hourItem.setAttribute("r", val / numberHours);
 
-      let textHourItem = document.createElementNS("http://www.w3.org/2000/svg",'text');
+      let textHourItem = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "text"
+      );
 
-      textHourItem.setAttribute("class", "hour-item");
-      textHourItem.setAttribute("x", `${left}%`);
-      textHourItem.setAttribute("y", `${bottom + 2.5}%`);
-     
+      textHourItem.setAttribute("x", `${x}`);
+      textHourItem.setAttribute("y", `${y}`);
+
+      textHourItem.setAttribute("alignment-baseline", "middle");
       textHourItem.setAttribute("text-anchor", "middle");
       textHourItem.setAttribute("font-family", "sans-serif");
       textHourItem.setAttribute("font-weight", "bold");
       textHourItem.setAttribute("font-size", fontSize);
-      
-      console.log(textHourItem);
-        textHourItem.innerHTML = i;
 
+      console.log(textHourItem);
+      textHourItem.innerHTML = i;
 
       circle.after(hourItem);
-      hourItem.after(textHourItem)
+      hourItem.after(textHourItem);
     }
   }
 
