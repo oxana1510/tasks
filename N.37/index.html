@@ -1,0 +1,60 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      margin: 50px;
+    }
+
+    .clock {
+      position: relative;
+      margin: auto;
+    }
+
+    
+    .arrow {
+      transform-origin: 50% 50%;
+    }
+
+    .hour-item {
+      transform-origin: 0% 0%;
+    }
+
+    .time {
+      font-weight: bold;
+      font-style: italic;
+      font-family: sans-serif;
+      margin: auto;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <input type="text" class="input" minlength="3" maxlength="3" />
+      <button class="btn">Построить часы</button>
+
+      <svg xmlns='http://www.w3.org/2000/svg' class="clock" width="0" height="0" >
+        <circle fill="#FCCA66"
+         class="circle" />
+        <line x1="50%" y1="50%" x2="50%" y2="95%" stroke="#2B2A29" stroke-width=2 
+        stroke-linecap="round"
+        class="arrow arrow-second" />
+        <line x1="50%" y1="50%" x2="50%" y2="90%" stroke="#2B2A29" stroke-width=4 
+        stroke-linecap="round"
+        class="arrow arrow-minute" />
+
+        <line x1="50%" y1="50%" x2="50%" y2="78%" stroke="#2B2A29" stroke-width=5 
+        stroke-linecap="round"
+        class="arrow arrow-hour" />
+        <text class="time" x="50%" y="30%" text-anchor="middle" font-style="italic"></text>
+      </svg>
+    </div>
+
+    
+    <script src="index.js"></script>
+  </body>
+</html>
