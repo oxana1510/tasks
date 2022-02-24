@@ -12,6 +12,7 @@ let arrowHour = clock.querySelector(".arrow-hour");
 let numberHours = 12;
 let angleHour = 30;
 let cell = 6;
+let coefficient = 2.6;
 
 btn.addEventListener("click", CLOCK_DOM, false);
 
@@ -37,8 +38,8 @@ function CLOCK_DOM() {
 
       let radAgle = i/numberHours * Math.PI * 2; // отображаемый угол в радианах
 
-      let x = (val/2)+Math.sin(radAgle)*(val/2.6); // проверяем для угла=0 - sin(0)=0 значит x=cx
-      let y = (val/2)-Math.cos(radAgle)*(val/2.6);
+      let x = (val/2)+Math.sin(radAgle)*(val/coefficient); // проверяем для угла=0 - sin(0)=0 значит x=cx
+      let y = (val/2)-Math.cos(radAgle)*(val/coefficient);
 
       let fontSize = val / numberHours;
 
