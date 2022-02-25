@@ -9,10 +9,10 @@ let arrowSeconds = clock.querySelector(".arrow-second");
 let arrowMinute = clock.querySelector(".arrow-minute");
 let arrowHour = clock.querySelector(".arrow-hour");
 
-let numberHours = 12;
-let angleHour = 30;
-let cell = 6;
-let coefficient = 2.6;
+let numberHours = 12; //количество делений на циферблате
+let angleHour = 30; //для расчета угла
+let cell = 6; //для расчета движения стрелок
+let coefficient = 2.6; //коэффициент, используется в формуле для расположения цифр
 
 btn.addEventListener("click", CLOCK_DOM, false);
 
