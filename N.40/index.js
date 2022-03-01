@@ -42,9 +42,9 @@ function CLOCK_CANVAS() {
 
     let minutes = (2 * Math.PI * date.getMinutes()) / sixty - Math.PI / 2;
 
-    let hours =
-      (2 * Math.PI * (date.getHours() % numberHours)) / numberHours -
-      Math.PI / 2;
+    let hours = (date.getHours()% numberHours * Math.PI / cell)+
+    (date.getMinutes() * Math.PI / (cell * sixty)) +
+    (date.getSeconds() * Math.PI / (360 * sixty)) - Math.PI / 2;
 
     context.clearRect(
       -halfVal,
